@@ -3,8 +3,11 @@
 <html>
 <head>
 	<title>Home</title>
+<c:import url="./layout/bootstrap.jsp"></c:import>
 </head>
+
 <body>
+<c:import url="./layout/nav.jsp"></c:import>
 <h1>
 	Hello world!  
 </h1>
