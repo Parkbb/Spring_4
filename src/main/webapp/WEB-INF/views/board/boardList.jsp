@@ -11,7 +11,8 @@
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<form  id="frm" action="noticeList">
+	<h2>${board}</h2>
+		<form  id="frm" action="${board}List">
 			<input type="hidden" id="curPage" value= "1" name="curPage" >
 			<select name="kind">
 				<option id="kt" value="kt">Title</option>
@@ -27,10 +28,10 @@
 			<thead>
 				<tr>
 					<th class="col-lg-1" style="text-align: center;">NUM</th>
-					<th class="col-lg-5" style="text-align: center;">TITLE</th>
-					<th class="col-lg-2" style="text-align: center;">WRITER</th>
-					<th class="col-lg-2" style="text-align: center;">DATE</th>
-					<th class="col-lg-2" style="text-align: center;">HIT</th>
+					<th class="col-lg-4" style="text-align: center;">TITLE</th>
+					<th class="col-lg-1" style="text-align: center;">WRITER</th>
+					<th class="col-lg-1" style="text-align: center;">DATE</th>
+					<th class="col-lg-1" style="text-align: center;">HIT</th>
 				</tr>
 
 			</thead>
@@ -39,9 +40,11 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td style="text-align: center;">${dto.num}</td>
-						<td style="text-align: center;">
-						
-						<a href="noticeSelect.notice?num=${dto.num}">${dto.title}</a></td>
+						<td style="text-align: left;">
+						<c:catch>
+							<c:forEach begin="1" end="${dto.depth}">&nbsp;&nbsp;ㄴ</c:forEach>
+						</c:catch>
+						<a href="${board}Select.notice?num=${dto.num}">${dto.title}</a></td>
 						<td style="text-align: center;">${dto.writer}</td>
 						<td style="text-align: center;">${dto.reg_date}</td>
 						<td style="text-align: center;">${dto.hit}</td>
@@ -68,7 +71,7 @@
 		</div>
 		<!-- session member, memberDTO -->
 		<c:if test="${empty sessionScope.member}">
-			<a href="noticeWrite.notice" class="btn btn-primary"
+			<a href="${board}Write" class="btn btn-primary"
 				style="float: right;">INSERT</a>
 		</c:if>
 		<c:choose>

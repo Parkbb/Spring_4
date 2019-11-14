@@ -34,8 +34,8 @@ public class BoardNoticeService implements BoardService {
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return boardNoticeDAO.boardWrite(boardVO);
 	}
 
 	@Override
