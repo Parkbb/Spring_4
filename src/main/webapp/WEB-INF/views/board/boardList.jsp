@@ -44,7 +44,7 @@
 						<c:catch>
 							<c:forEach begin="1" end="${dto.depth}">&nbsp;&nbsp;ㄴ</c:forEach>
 						</c:catch>
-						<a href="${board}Select.notice?num=${dto.num}">${dto.title}</a></td>
+						<a href="${board}Select?num=${dto.num}">${dto.title}</a></td>
 						<td style="text-align: center;">${dto.writer}</td>
 						<td style="text-align: center;">${dto.reg_date}</td>
 						<td style="text-align: center;">${dto.hit}</td>

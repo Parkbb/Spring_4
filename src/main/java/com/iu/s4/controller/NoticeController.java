@@ -54,13 +54,73 @@ public class NoticeController {
 			mv.setViewName("redirect:noticeList");
 		}else {
 			mv.addObject("msg", "글쓰기 실패");
-			mv.addObject("paht", "noticeList");
+			mv.addObject("path", "noticeList");
 			mv.setViewName("common/common_result");
 		}
 		
 
 		mv.addObject("board", "notice");
 		
+		return mv;
+	}
+	
+	@RequestMapping("noticeSelect")
+	public ModelAndView boardSelect(BoardVO boardVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("dto", boardNoticeService.boardSelect(boardVO));
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardSelect");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
+	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		
+		mv.addObject("dto", boardNoticeService.boardSelect(boardVO));
+		
+		mv.setViewName("board/boardUpdate");
+		return mv;
+	}
+	
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
+	public ModelAndView boardUpdate(BoardVO boardVO, ModelAndView mv) throws Exception{
+		
+		
+		int result = boardNoticeService.boardUpdate(boardVO);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:noticeList");
+		}else {
+			mv.addObject("msg", "수정 실패");
+			mv.addObject("path", "noticeList");
+			mv.setViewName("common/common_result");
+		}
+		
+
+		mv.addObject("board", "notice");
+		
+		return mv;
+	}
+	
+	@RequestMapping("noticeDelete")
+	public ModelAndView boardDelete(BoardVO boardVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = boardNoticeService.boardDelete(boardVO);
+		if(result>0) {
+			mv.addObject("msg", "삭제 성공");
+		
+		}else {
+			mv.addObject("msg", "삭제 실패");
+		}
+		
+		mv.addObject("path", "noticeList");
+		mv.addObject("board", "notice");
+		mv.setViewName("common/common_result");
 		return mv;
 	}
 }

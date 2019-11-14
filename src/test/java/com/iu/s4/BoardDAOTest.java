@@ -21,15 +21,12 @@ public class BoardDAOTest extends TestAbstractCase{
 	@Test
 	public void test() throws Exception{
 		BoardVO boardVO = new BoardVO();
-		boardVO.setTitle("testt");
-		boardVO.setWriter("testw");
-		boardVO.setContents("testc");
-		
-		int result = notice.boardWrite(boardVO);
-		int result2 = qna.boardWrite(boardVO);
+		boardVO.setNum(376);
 
+		int result = qna.boardDelete(boardVO);
+		
 		assertEquals(1, result);
-		assertEquals(1, result2);
+	
 		
 	}
 

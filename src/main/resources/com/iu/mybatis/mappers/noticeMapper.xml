@@ -7,8 +7,8 @@
 
 	<!-- 전체조회 -->
 	<select id="boardList"
-		resultType="com.iu.s4.model.BoardNoticeVO"
-		parameterType="com.iu.s4.util.Pager">
+		resultType="NoticeVO"
+		parameterType="Pager">
 		select * from
 		(select N.*, rownum R from
 		(select * from notice
@@ -28,8 +28,8 @@
 	</select>
 
 	<!-- 글전체 수 -->
-	<select id="boardCount" resultType="java.lang.Integer"
-		parameterType="com.iu.s4.util.Pager">
+	<select id="boardCount" resultType="Integer"
+		parameterType="Pager">
 		select count(num) from notice
 		<choose>
 			<when test="kind == 'kt'">
@@ -45,9 +45,25 @@
 
 	</select>
 	<!-- 글쓰기 -->
-	<select id="boardWrite" parameterType="com.iu.s4.model.BoardVO" resultType="java.lang.Integer">
+	<select id="boardWrite" parameterType="BoardVO" resultType="Integer">
 		insert into notice 
   		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0)
 	
 	</select>
+	
+	<!-- 글보기 -->
+	<select id="boardSelect" parameterType="BoardVO" resultType="BoardVO">
+		select * from notice
+		where num = #{num}
+	</select>
+	
+	<!-- 글수정 -->
+	<update id="boardUpdate" parameterType="BoardVO">
+		update notice set title = #{title}, contents = #{contents} where num = #{num}
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="boardDelete" parameterType="BoardVO">
+		delete notice where num=#{num}
+	</delete>
 </mapper>
