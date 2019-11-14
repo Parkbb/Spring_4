@@ -24,14 +24,14 @@ public class BoardQnaDAO implements BoardDAO {
 		return ar;
 	}
 	
-	public int boardReplyUpdate(BoardQnaVO boardQnaVO) throws Exception{
+	public int boardReplyUpdate(BoardVO boardVO) throws Exception{
 		
-		return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardQnaVO);
+		return sqlSession.update(NAMESPACE+"boardReplyUpdate", boardVO);
 	}
 	
-	public int boardReply(BoardQnaVO boardQnaVO) throws Exception{
+	public int boardReply(BoardVO boardVO) throws Exception{
 		
-		return sqlSession.insert(NAMESPACE+"boardReply", boardQnaVO);
+		return sqlSession.insert(NAMESPACE+"boardReply", boardVO);
 	}
 	 
 	@Override
