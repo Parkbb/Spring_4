@@ -50,15 +50,16 @@ public class NoticeController {
 		
 		int result = boardNoticeService.boardWrite(boardVO);
 		
-		String msg = "글쓰기 실패";
 		if(result > 0) {
-			msg = "글쓰기 성공";
+			mv.setViewName("redirect:noticeList");
+		}else {
+			mv.addObject("msg", "글쓰기 실패");
+			mv.addObject("paht", "noticeList");
+			mv.setViewName("common/common_result");
 		}
-		String path = "noticeList";
-		mv.addObject("msg", msg);
-		mv.addObject("path", path);
+		
+
 		mv.addObject("board", "notice");
-		mv.setViewName("common/common_result");
 		
 		return mv;
 	}
