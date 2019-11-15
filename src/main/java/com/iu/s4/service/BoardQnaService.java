@@ -51,6 +51,7 @@ public class BoardQnaService implements BoardService {
 		
 		
 		int result = boardQnaDAO.boardReplyUpdate(boardVO);
+		
 		int result2 = boardQnaDAO.boardReply(boardVO);
 		
 		
