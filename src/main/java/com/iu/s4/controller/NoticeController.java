@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -121,6 +122,20 @@ public class NoticeController {
 		mv.addObject("path", "noticeList");
 		mv.addObject("board", "notice");
 		mv.setViewName("common/common_result");
+		return mv;
+	}
+	
+	@GetMapping("noticeResult")
+	public ModelAndView noticeResult (Pager pager) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<BoardVO> ar =boardNoticeService.boardList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.addObject("board", "notice");
+		mv.setViewName("Result");
+		
 		return mv;
 	}
 }
