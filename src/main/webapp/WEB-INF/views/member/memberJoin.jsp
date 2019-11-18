@@ -74,10 +74,11 @@
 			<div class="form-group" class="col-sm-4">
 				<label for="sel1">성별:</label>
 				<select class="form-control" id="sel1" name="gender">
-					<option>성별</option>
+					<option value="N">성별</option>
 					<option value="M">남성</option>
 					<option value="F">여성</option>
 				</select>
+				<p id="input_gender" class="btn_check"></p>
 			</div>
 
 			<input type="button" id="join" class="btn btn-default" value="Join">
@@ -91,30 +92,38 @@ $("#pwCheck").blur(function() {
 	}
 })
 
+
+	
 $("#id").blur(function() {
 	var id = $("#id").val();
+	if($(this).val()!= ""){
+		
 	$.get("memberIdCheck?id="+id,function(data){
 		
 		if(data == 0){
 			$("#input_id").html("중복된 ID입니다");
 			$("#id").val("");
-			$("#input_id").attr('class', 'a');
+			$("#input_id").attr('class', 'b');
 			$("#id").focus();
 			idCheck=true;
 			
 		}else{
 			$("#input_id").html("사용가능한 ID입니다");
-			$("#input_id").attr('class', 'b');
+			$("#input_id").attr('class', 'a');
 			idCheck=false;
 		}
-		
-		
 	});
+	}else{
+		$("#input_id").html("ID를 입력하세요");
+	}
 });
+
 var idCheck=false; //false : 중복된 ID, 또는 중복검사 안함
 	//true : 사용가능한 ID
 $("#join").click(function() {
-	alert($("#sel1").val());
+	if($("#sel1").val() == "N"){
+		$("#input_gender").html("성별을 선택하세요");
+	};
 	
 });
 </script>
