@@ -19,24 +19,34 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.a{
+	color: green;
+	}
+	
+	.b{
+	color: red;
+	}	
+</style>
 </head>
+
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<h2>Join1</h2>
+		<h2>Join</h2>
 		<form action="memberJoin" method="post" id="form"  class="col-sm-8">
 
-			<div class="form-group"  class="col-sm-3">
+			<div class="form-group"  class="col-sm-4">
 				<div>
 				<label for="id">아이디:</label> 
 				</div>
 				<input type="text" class="form-control"
-					id="id" name="id"   style="float: left; width: 630px;">
-				<input type="button" id="id-check-btn" class="btn btn-primary" value="중복체크" style="float:right;">
+					id="id" name="id" >
+				
 				<p id="input_id" class="btn_check"></p>
 			</div>
 			
-			<div class="form-group"  class="col-sm-4" style="clear: both;">
+			<div class="form-group"  class="col-sm-4" >
 				<label for="pw">비밀번호:</label> <input type="password"
 					class="form-control" id="pw" name="pw">
 				<p id="input_pw" class="btn_check"></p>
@@ -64,12 +74,13 @@
 			<div class="form-group" class="col-sm-4">
 				<label for="sel1">성별:</label>
 				<select class="form-control" id="sel1" name="gender">
+					<option>성별</option>
 					<option value="M">남성</option>
 					<option value="F">여성</option>
 				</select>
 			</div>
 
-			<button type="submit" class="btn btn-default">SignIn</button>
+			<input type="button" id="join" class="btn btn-default" value="Join">
 		</form>
 	</div>
 
@@ -80,9 +91,34 @@ $("#pwCheck").blur(function() {
 	}
 })
 
-$("#id-check-btn").click(function() {
-	window.open('memberIdCheck?id='+$("#id").val(), '' ,  'width=500, height=300, left=400, top=200');
+$("#id").blur(function() {
+	var id = $("#id").val();
+	$.get("memberIdCheck?id="+id,function(data){
+		
+		if(data == 0){
+			$("#input_id").html("중복된 ID입니다");
+			$("#id").val("");
+			$("#input_id").attr('class', 'a');
+			$("#id").focus();
+			idCheck=true;
+			
+		}else{
+			$("#input_id").html("사용가능한 ID입니다");
+			$("#input_id").attr('class', 'b');
+			idCheck=false;
+		}
+		
+		
+	});
+});
+var idCheck=false; //false : 중복된 ID, 또는 중복검사 안함
+	//true : 사용가능한 ID
+$("#join").click(function() {
+	alert($("#sel1").val());
+	
 });
 </script>
+
 </body>
+
 </html>

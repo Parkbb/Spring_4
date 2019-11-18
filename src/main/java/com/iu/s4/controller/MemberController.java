@@ -31,12 +31,14 @@ public class MemberController {
 		
 		memberVO = memberService.memeberIdCheck(memberVO);
 		
-		String result = "중복된 아이디입니다";
+		int result = 0;
 		if(memberVO == null) {
-			result = "사용가능한 아이디입니다";
+			result = 1;
+			
 		}else {
 			
 		}
+		
 		model.addAttribute("dto", memberVO);
 		model.addAttribute("result", result);
 	}
