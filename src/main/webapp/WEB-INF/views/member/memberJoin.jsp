@@ -34,7 +34,7 @@
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
 		<h2>Join</h2>
-		<form action="memberJoin" method="post" id="form"  class="col-sm-8">
+		<form action="memberJoin" method="post" id="form"  class="col-sm-8" enctype="multipart/form-data">
 
 			<div class="form-group"  class="col-sm-4">
 				<div>
@@ -80,8 +80,17 @@
 				</select>
 				<p id="input_gender" class="btn_check"></p>
 			</div>
-
-			<input type="button" id="join" class="btn btn-default" value="Join">
+			
+			<div class="form-group"  class="col-sm-4">
+				<div>
+				<label for="id">사진:</label> 
+				</div>
+				<input type="file" class="form-control"
+					id="file" name="file" >
+				
+				<p id="input_file" class="btn_check"></p>
+			</div>
+			<input type="submit" id="join" class="btn btn-default" value="Join">
 		</form>
 	</div>
 

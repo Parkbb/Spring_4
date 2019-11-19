@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s4.model.MemberVO;
@@ -24,6 +25,11 @@ public class MemberController {
 
 	@Inject
 	private MemberServiceImpl memberService;
+	
+	@GetMapping("memberDelete")
+	public void memberDelete(HttpSession session) throws Exception{
+		
+	}
 	
 	@GetMapping("memberIdCheck")
 	public void memberIdcheck(MemberVO memberVO, Model model) throws Exception{
@@ -48,8 +54,10 @@ public class MemberController {
 		
 	}
 	@PostMapping("memberJoin")
-	public ModelAndView memberJoin(MemberVO memberVO) throws Exception{
-		int result = memberService.memberJoin(memberVO);
+	public ModelAndView memberJoin(MemberVO memberVO, HttpSession session) throws Exception{
+		session.getServletContext().getRealPath("resources/upload");
+		
+		int result = memberService.memberJoin(memberVO, session);
 		
 		ModelAndView mv = new ModelAndView();
 		String msg = "Join Fail";

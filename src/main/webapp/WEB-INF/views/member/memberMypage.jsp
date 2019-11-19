@@ -66,7 +66,7 @@
     	  <label for="kor">POINT:</label>
       	<input type="text" class="form-control" id="point" readonly="readonly" name="grade" value="${member.point}">
     </div>
-    
+    <img alt="" src="../resources/upload/member/${member.filename}">
     
     <a href = "memberDelete"><input type="button" class="btn btn-danger" id="submit" value="Delete" style="float: right;"></a>
     <a href = "memberPwUpdate"><input type="button" class="btn btn-sucess" id="submit" value="UpdatePW" style="float: right;"></a>

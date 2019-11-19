@@ -5,8 +5,8 @@
   
   <mapper namespace="memberMapper">
   	<insert id="memberJoin" parameterType="MemberVO">
-  		insert into member (id, pw, name, email, birth, gender)
-		values (#{id}, #{pw}, #{name}, #{email}, #{birth}, #{gender})
+  		insert into member (id, pw, name, email, birth, gender, filename, originalname)
+		values (#{id}, #{pw}, #{name}, #{email}, #{birth}, #{gender}, #{filename}, #{originalname})
   	</insert>
   	
   	<select id="memberLogin" parameterType="MemberVO" resultType="MemberVO">

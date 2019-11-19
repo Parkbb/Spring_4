@@ -1,11 +1,15 @@
 package com.iu.s4.service;
 
+import java.io.File;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.iu.s4.dao.MemberDAOImpl;
 import com.iu.s4.model.MemberVO;
+import com.iu.s4.util.FileSaver;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -19,9 +23,23 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAOImpl memberDAO;
 	
 	@Override
-	public int memberJoin(MemberVO memberVO) throws Exception {
+	public int memberJoin(MemberVO memberVO, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
+		//Server에 HDD파일 저장
+		//1. 파일을 저장할 실제 경로
+		String realPath = session.getServletContext().getRealPath("resources/upload/member");
+		
+		String fileName = null;
+		FileSaver fs = new FileSaver();
+		//fileName = fs.save(realPath, memberVO.getFile());
+		fileName = fs.save2(realPath, memberVO.getFile());
+		
+		
+		System.out.println(realPath);
+		memberVO.setFilename(fileName);
+		memberVO.setOriginalname(memberVO.getFile().getOriginalFilename());
 		return memberDAO.memberJoin(memberVO);
+		
 	}
 
 	@Override
@@ -39,6 +57,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberDelete(MemberVO memberVO) throws Exception {
 		// TODO Auto-generated method stub
+		
+		
 		return 0;
 	}
 
