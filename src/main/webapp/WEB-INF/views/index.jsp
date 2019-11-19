@@ -11,7 +11,7 @@
 <body>
 <c:import url="./layout/nav.jsp"></c:import>
 <h1>
-	Hello world!  
+	Hello world! ${dto}
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

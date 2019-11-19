@@ -11,6 +11,6 @@
 		<typeAlias type="com.iu.s4.util.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Integer" alias="Integer"/>
-		
+		<typeAlias type="com.iu.s4.model.MemberVO" alias="MemberVO"/>
 	</typeAliases>
 </configuration>
