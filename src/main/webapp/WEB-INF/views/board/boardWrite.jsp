@@ -21,7 +21,7 @@
 
 <div class="container">
 <h2>${board} Insert Page</h2>
-<form  method="post" id="frm" action="${board}Write">
+<form  method="post" id="frm" action="${board}Write" enctype="multipart/form-data">
 	
 	
 	<div class="form-group" >
@@ -39,7 +39,10 @@
     	  <textarea rows="30" cols="50" class="form-control" placeholder="Enter Contents" name="contents"></textarea>
       	
     </div>
-    
+    <div class="form-group">
+    	  <label for="kor">FILE:</label>
+      	<input type="file" class="form-control" id="file"  name="file">
+    </div>
     
     <input type="button" class="btn btn-default" id="submit" value="submit">
     

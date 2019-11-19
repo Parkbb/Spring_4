@@ -3,6 +3,7 @@ package com.iu.s4.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,12 +45,12 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
-	public ModelAndView boardWrite(BoardVO boardVO) throws Exception{
-		
+	public ModelAndView boardWrite(BoardVO boardVO, HttpSession session) throws Exception{
+		System.out.println("a");
 		ModelAndView mv = new ModelAndView();
 		
-		int result = boardNoticeService.boardWrite(boardVO);
-		
+		int result = boardNoticeService.boardWrite(boardVO, session);
+		System.out.println("b");
 		if(result > 0) {
 			mv.setViewName("redirect:noticeList");
 		}else {

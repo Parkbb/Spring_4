@@ -41,9 +41,12 @@
 	<select id="boardWrite" parameterType="BoardVO" resultType="Integer">
 		insert into notice 
   		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0)
-	
+		
 	</select>
-	
+	<select id="boardWrite2" parameterType="BoardVO">
+		insert into notice2
+		values (board_seq.currval, #{filename}, #{originalname})
+	</select>
 	<!-- 글보기 -->
 	<select id="boardSelect" parameterType="BoardVO" resultType="BoardVO">
 		select * from notice
