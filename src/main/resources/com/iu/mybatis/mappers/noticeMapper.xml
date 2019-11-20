@@ -37,10 +37,15 @@
 		<include refid="bs"></include>
 
 	</select>
+	
+	<select id="getNum" resultType="Integer">
+		select board_seq.nextval from dual
+	</select>
+	
 	<!-- 글쓰기 -->
 	<select id="boardWrite" parameterType="BoardVO" resultType="Integer">
 		insert into notice 
-  		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0)
+  		values (#{num}, #{title} , #{writer} , #{contents} , sysdate, 0)
 		
 	</select>
 	<select id="boardWrite2" parameterType="BoardVO">

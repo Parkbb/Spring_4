@@ -28,7 +28,12 @@ public class BoardNoticeDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO);
 	}
-
+	
+	public int getNum() throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+	
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
 		
