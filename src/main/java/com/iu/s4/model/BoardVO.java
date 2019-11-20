@@ -15,6 +15,7 @@ public class BoardVO {
 	private MultipartFile [] file;
 	
 	
+	
 	public MultipartFile[] getFile() {
 		return file;
 	}

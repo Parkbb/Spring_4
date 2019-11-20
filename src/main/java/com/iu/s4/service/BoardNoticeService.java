@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s4.dao.BoardNoticeDAO;
 import com.iu.s4.dao.NoticeFilesDAO;
+import com.iu.s4.model.BoardNoticeVO;
 import com.iu.s4.model.BoardVO;
 import com.iu.s4.model.NoticeFilesVO;
 import com.iu.s4.util.FileSaver;
@@ -38,26 +39,38 @@ public class BoardNoticeService implements BoardService {
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return boardNoticeDAO.boardSelect(boardVO);
+		boardVO = boardNoticeDAO.boardSelect(boardVO);
+		
+		BoardNoticeVO boardNoticeVO = (BoardNoticeVO)boardVO;
+		
+		List<NoticeFilesVO> ar =noticeFilesDAO.fileList(boardVO.getNum());
+		
+		boardNoticeVO.setFiles(ar);
+		
+		return boardNoticeVO;
 	}
 
 	@Override
 	public int boardWrite(BoardVO boardVO, HttpSession session) throws Exception {
 		
 		String realpath = session.getServletContext().getRealPath("resources/upload/notice");
-		System.out.println(realpath);
 		
-		
+
 		int result = boardNoticeDAO.boardWrite(boardVO);
-			
+		
+		if(boardVO.getFile() !=null)
+		{
 		for (int i = 0; i < boardVO.getFile().length; i++) {
 			NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
-			String filename = fs.save(realpath, boardVO.getFile()[i]);
+			String filename = fs.save2(realpath, boardVO.getFile()[i]);
+			
+			noticeFilesVO.setNum(boardVO.getNum());
 			noticeFilesVO.setFname(filename);
 			noticeFilesVO.setOname(boardVO.getFile()[i].getOriginalFilename());
+			
 			noticeFilesDAO.noticefilesWrite(noticeFilesVO);
 		}
-		
+		}
 		return result;
 	}
 

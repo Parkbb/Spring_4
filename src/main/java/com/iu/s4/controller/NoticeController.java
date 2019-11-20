@@ -50,7 +50,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = boardNoticeService.boardWrite(boardVO, session);
-		System.out.println("b");
+		
 		if(result > 0) {
 			mv.setViewName("redirect:noticeList");
 		}else {

@@ -1,5 +1,7 @@
 package com.iu.s4.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,6 +20,11 @@ public class NoticeFilesDAO {
 		
 		return sqlsession.insert(NAMESPACE+"fileWrite",noticeFilesVO);
 		
+	}
+	
+	public List<NoticeFilesVO> fileList (int num) throws Exception{
+		
+		return sqlsession.selectList(NAMESPACE+"fileList", num);
 	}
 	
 }

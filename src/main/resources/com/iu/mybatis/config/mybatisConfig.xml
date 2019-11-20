@@ -13,5 +13,6 @@
 		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="com.iu.s4.model.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.iu.s4.model.NoticeFilesVO" alias="NFilesVO"/>
+		<typeAlias type="com.iu.s4.model.QnaFilesVO" alias="QFilesVO"/>
 	</typeAliases>
 </configuration>

@@ -5,6 +5,11 @@
   
   <mapper namespace="noticeFilesMapper">
   	<insert id="fileWrite" parameterType="NFilesVO">
-  		insert into noticefiles values(file_seq.nextval, #{num}, #{fname}, #{oname])
+  		insert into noticefiles values(file_seq.nextval, #{num}, #{fname}, #{oname})
   	</insert>
+  	
+  	<select id="fileList" parameterType="Integer" resultType="NFilesVO">
+  		select * from noticefiles where num = #{num}
+  	
+  	</select>
   </mapper>

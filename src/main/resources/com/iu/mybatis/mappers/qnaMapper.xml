@@ -39,10 +39,14 @@
 
 	</select>
 	<!-- 글쓰기 -->
-	<select id="boardWrite" parameterType="BoardVO" resultType="Integer">
+	<insert id="boardWrite" parameterType="BoardVO">
+		<selectKey order="BEFORE" resultType="Integer" keyProperty="num">
+			select board_seq.nextval from dual
+		</selectKey>
+	
 		insert into qna
-  		values (board_seq.nextval, #{title} , #{writer} , #{contents} , sysdate, 0, board_seq.currval, 0, 0)
-	</select>
+  		values (#{num}, #{title} , #{writer} , #{contents} , sysdate, 0, board_seq.currval, 0, 0)
+	</insert>
 	
 	<!-- 글보기 -->
 	<select id="boardSelect" parameterType="BoardVO" resultType="QnaVO">

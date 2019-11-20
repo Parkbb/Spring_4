@@ -38,12 +38,19 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h4>${dto.contents}</h4>
-
 		</div>
+		
+		<div>
+			<c:forEach items="${dto.files}" var="file">
+				<a href="../resources/upload/${board}/${file.fname}">${file.oname}</a>
+			
+			</c:forEach>
+		</div>
+		
 		<div>
 			<ul class="pager">
-				<li><a href="noticeSelect.jsp?num=${nump} }" id="pre">Previous</a></li>
-				<li><a href="noticeSelect.jsp?num=${numn} }" id="next">Next</a></li>
+				<li><a href="noticeSelect.jsp?num=${nump}" id="pre">Previous</a></li>
+				<li><a href="noticeSelect.jsp?num=${numn}" id="next">Next</a></li>
 			</ul>
 			<div style="float: left;">
 				<a href="${board}List" class="btn btn-success">List</a>
