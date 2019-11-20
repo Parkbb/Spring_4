@@ -12,18 +12,20 @@ public class BoardVO {
 	private String contents;
 	private Date reg_date;
 	private Integer hit;
-	private MultipartFile file;
+	private MultipartFile [] file;
+	
+	
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
+	}
 	private String filename;
 	private String originalfilename;
 	
 	
-	
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
+
 	public String getFilename() {
 		return filename;
 	}

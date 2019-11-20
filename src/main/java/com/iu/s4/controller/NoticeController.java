@@ -46,7 +46,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
 	public ModelAndView boardWrite(BoardVO boardVO, HttpSession session) throws Exception{
-		System.out.println("a");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		int result = boardNoticeService.boardWrite(boardVO, session);
@@ -63,6 +63,7 @@ public class NoticeController {
 		mv.addObject("board", "notice");
 		
 		return mv;
+		
 	}
 	
 	@RequestMapping("noticeSelect")

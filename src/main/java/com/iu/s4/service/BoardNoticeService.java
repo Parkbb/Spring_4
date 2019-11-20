@@ -7,9 +7,12 @@ import javax.inject.Qualifier;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s4.dao.BoardNoticeDAO;
+import com.iu.s4.dao.NoticeFilesDAO;
 import com.iu.s4.model.BoardVO;
+import com.iu.s4.model.NoticeFilesVO;
 import com.iu.s4.util.FileSaver;
 import com.iu.s4.util.Pager;
 
@@ -18,6 +21,10 @@ public class BoardNoticeService implements BoardService {
 	
 	@Inject
 	private BoardNoticeDAO boardNoticeDAO;
+	@Inject
+	private FileSaver fs;
+	@Inject
+	private NoticeFilesDAO noticeFilesDAO;
 	
 	@Override
 	public List<BoardVO> boardList(Pager pager) throws Exception {
@@ -39,15 +46,19 @@ public class BoardNoticeService implements BoardService {
 		
 		String realpath = session.getServletContext().getRealPath("resources/upload/notice");
 		System.out.println(realpath);
-		FileSaver fs = new FileSaver();
 		
-		String filename = fs.save(realpath, boardVO.getFile());
 		
-		boardVO.setFilename(filename);
-		boardVO.setOriginalfilename(boardVO.getOriginalfilename());
+		int result = boardNoticeDAO.boardWrite(boardVO);
+			
+		for (int i = 0; i < boardVO.getFile().length; i++) {
+			NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+			String filename = fs.save(realpath, boardVO.getFile()[i]);
+			noticeFilesVO.setFname(filename);
+			noticeFilesVO.setOname(boardVO.getFile()[i].getOriginalFilename());
+			noticeFilesDAO.noticefilesWrite(noticeFilesVO);
+		}
 		
-		//return boardNoticeDAO.boardWrite(boardVO);
-		return 0;
+		return result;
 	}
 
 	@Override

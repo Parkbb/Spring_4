@@ -41,7 +41,7 @@
 				</div>
 			</div>
 		<div id = "files">
-			<div class="form-group test tttt" >
+			<div class="form-group" >
 				
 				<label class="control-label col-sm-2" for="title">FILES</label>
 				<div class="col-sm-9">
@@ -57,7 +57,7 @@
 		
 			<input type="button" class="btn btn-primary" value="ADD FILE" id="add_file">
 		<!--**********************버튼그룹 -->
-		<button type="submit" class="btn btn-info" id="btn_right">작성1</button>
+		<button type="submit" class="btn btn-info" id="btn_right">작성</button>
 		</form>
 
 	
@@ -65,6 +65,8 @@
 <script type="text/javascript">
 	var files = $("#files").html();
 	var number = 0;
+	
+	$("#files").empty()
 	
 	$("#add_file").click(function() {
 			if (number < 4) {
@@ -79,7 +81,8 @@
 	
 	$("#files").on('click' ,".del_file" ,function() {
 		
-			$(this).closest($(".tttt")).remove();
+			//$(this).parents(".form-group").remove();
+			$(this).closest(".form-group").remove();
 			number--;
 		
 

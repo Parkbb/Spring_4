@@ -6,12 +6,13 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s4.model.MemberVO;
 
-
+@Component
 public class FileSaver {
 	
 	//1.Spring에서 제공하는 FileCopyUtils 클래스의 copy메서드 사용
