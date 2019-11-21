@@ -4,6 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="memberMapper">
+  
+  	
+  	<!-- <resultMap type="MemberVO" id="memberFile">
+  		<id property="id" column="id"/>
+  		<association property="memberFileVO" javaType="MemberFileVO">
+  			<id property="fnum" column="fnum" />
+  			<result property="fname" column="fname"/>
+  			<result property="oname" column="oname"/>
+  		</association>
+  	</resultMap> -->
+  	
   	<insert id="memberJoin" parameterType="MemberVO">
   		insert into member (id, pw, name, email, birth, gender, filename, originalname)
 		values (#{id}, #{pw}, #{name}, #{email}, #{birth}, #{gender}, #{filename}, #{originalname})

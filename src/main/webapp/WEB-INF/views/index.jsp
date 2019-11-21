@@ -15,5 +15,20 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<script type="text/javascript">
+
+
+	
+	setInterval(function() {
+		
+		$.get("./time",function(data){
+			$("p").html(data);
+		});
+	
+	}, 1000);
+	
+
+</script>
 </body>
 </html>

@@ -115,8 +115,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "qnaUpdate", method = RequestMethod.POST)
-	public ModelAndView boardUpdate(BoardVO boardVO, ModelAndView mv) throws Exception{
-		int result = boardQnaService.boardUpdate(boardVO);
+	public ModelAndView boardUpdate(BoardVO boardVO, ModelAndView mv, HttpSession session) throws Exception{
+		int result = boardQnaService.boardUpdate(boardVO, session);
 		if(result > 0) {
 			mv.setViewName("redirect:qnaList");
 		}else {

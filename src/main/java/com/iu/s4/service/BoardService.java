@@ -16,7 +16,7 @@ public interface BoardService {
 	//write
 	public int boardWrite(BoardVO boardVO, HttpSession session)throws Exception;
 	//update
-	public int boardUpdate(BoardVO boardVO) throws Exception;
+	public int boardUpdate(BoardVO boardVO, HttpSession session) throws Exception;
 	//delete
 	public int boardDelete(BoardVO boardVO) throws Exception;
 }

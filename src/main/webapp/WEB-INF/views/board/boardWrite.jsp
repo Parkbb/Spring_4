@@ -42,7 +42,6 @@
 			</div>
 		<div id = "files">
 			<div class="form-group" >
-				
 				<label class="control-label col-sm-2" for="title">FILES</label>
 				<div class="col-sm-9">
 				<input type="file" class="form-control" id="file" name="file">
@@ -50,9 +49,7 @@
 				<div class="col-sm-1">
 				<input type="button" class="form-control btn btn-danger del_file" value="DEL">
 				</div>
-				
 			</div>
-		
 		</div>
 		
 			<input type="button" class="btn btn-primary" value="ADD FILE" id="add_file">
@@ -69,24 +66,20 @@
 	$("#files").empty()
 	
 	$("#add_file").click(function() {
-			if (number < 4) {
+			if (number < 5) {
 			$("#files").append(files);
 				number++;
 			}else{
-				$.get("noticeReset");
-				alert("그만해");
+				alert("파일은 최대 5개까지 첨부가능합니다");
 			}
 		
 	});
 	
 	$("#files").on('click' ,".del_file" ,function() {
-		
 			//$(this).parents(".form-group").remove();
 			$(this).closest(".form-group").remove();
 			number--;
-		
-
-	})
+	});
 	
 	</script>
 </body>

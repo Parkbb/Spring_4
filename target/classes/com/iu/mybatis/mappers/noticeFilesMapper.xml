@@ -10,6 +10,14 @@
   	
   	<select id="fileList" parameterType="Integer" resultType="NFilesVO">
   		select * from noticefiles where num = #{num}
-  	
   	</select>
+  	
+  	<delete id="fileDelete" parameterType="NFilesVO">
+  		delete noticefiles where fnum = #{fnum}
+  	</delete>
+  	
+  	<!-- 파일 조회 -->
+	<select id="fileSelect" resultType="NFilesVO" parameterType="NFilesVO">
+		select * from noticefiles where fnum=#{fnum}
+	</select>
   </mapper>

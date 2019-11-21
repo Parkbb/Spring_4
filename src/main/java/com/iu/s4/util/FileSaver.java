@@ -20,7 +20,7 @@ public class FileSaver {
 	public String save(String realpath,MultipartFile multipartFile) throws Exception {
 		
 		File file = new File(realpath);
-		if(file.exists()) {
+		if(!file.exists()) {
 			 file.mkdirs();
 			}
 		
@@ -41,7 +41,7 @@ public class FileSaver {
 	public String save2(String realpath, MultipartFile multipartFile) throws Exception{
 		
 		File file = new File(realpath);
-		if(file.exists()) {
+		if(!file.exists()) {
 			 file.mkdirs();
 			}
 		
@@ -62,7 +62,7 @@ public class FileSaver {
 	public String save3(String realpath, MultipartFile multipartFile) throws Exception{
 		
 		File file = new File(realpath);
-		if(file.exists()) {
+		if(!file.exists()) {
 			 file.mkdirs();
 			}
 		

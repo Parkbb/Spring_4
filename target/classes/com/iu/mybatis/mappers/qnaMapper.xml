@@ -49,8 +49,31 @@
 	</insert>
 	
 	<!-- 글보기 -->
-	<select id="boardSelect" parameterType="BoardVO" resultType="QnaVO">
-		select * from qna
+	<resultMap type="QnaVO" id="boardFile">
+		<id property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
+		<result property="contents" column="contents"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="hit" column="hit"/>
+		<result property="ref" column="ref"/>
+		<result property="step" column="step"/>
+		<result property="depth" column="depth"/>
+		<collection property="files" javaType="java.util.List" ofType="QFilesVO" resultMap="filesResult">
+			
+		</collection>
+		
+	</resultMap>
+	<resultMap type="QFilesVO" id="filesResult">
+		<id property="qnum" column="qnum"/>
+		<result property="fname" column="fname"/>
+		<result property="oname" column="oname"/>
+	</resultMap>
+	
+	
+	<select id="boardSelect" parameterType="BoardVO" resultMap="boardFile">
+		select * from qna Q left outer join qnafiles F
+		using(num)
 		where num = #{num}
 	</select>
 	<!-- 글수정 -->
