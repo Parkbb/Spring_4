@@ -10,15 +10,18 @@
 
 <body>
 <c:import url="./layout/nav.jsp"></c:import>
+<c:import url="./layout/summernote.jsp"></c:import>
 <h1>
 	Hello world! ${dto}
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P id="p">  The time on the server is ${serverTime}. </P>
+
+<div id="editor"></div>
 
 <script type="text/javascript">
 
-
+	$("#editor").summernote();
 	
 	setInterval(function() {
 		

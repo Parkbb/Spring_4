@@ -2,18 +2,19 @@ package com.iu.s4.model;
 
 public class QnaFilesVO {
 	
-	private int qnum;
+	private int fnum;
 	private int num;
 	private String fname;
 	private String oname;
 	
 	
 	
-	public int getQnum() {
-		return qnum;
+
+	public int getFnum() {
+		return fnum;
 	}
-	public void setQnum(int qnum) {
-		this.qnum = qnum;
+	public void setFnum(int fnum) {
+		this.fnum = fnum;
 	}
 	public int getNum() {
 		return num;

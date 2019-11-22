@@ -11,6 +11,7 @@
 </head>
 <body>
 <c:import url="../layout/nav.jsp" />
+<c:import url="../layout/summernote.jsp" />
 <div class="container">
 <h2>Point Update Page</h2>
 
@@ -32,7 +33,7 @@
     
     <div class="form-group">
     	  <label for="eng">CONTENTS:</label>
-    	  <textarea rows="30" cols="50" class="form-control" placeholder="Enter Contents" name="contents">${dto.contents}</textarea>
+    	  <div id="contents" class="form-control" ></div>
     </div>
     		<div id = "files">
 			<div class="form-group" >
@@ -49,11 +50,16 @@
 		<input type="button" class="btn btn-primary" value="ADD FILE" id="add_file">
     
     <div id="fore">
+    	
+    	
     	<c:forEach items="${dto.files}" var="file" varStatus="status">
     		<div id="f${file.fnum}">
 	    		<p>${file.oname} <input type="button" value="del${status.count}" class="btn btn-danger del" id="${file.fnum}" title="${status.count}"></p>
     		</div>
 		</c:forEach>
+  
+    	
+    	
     </div>
     
     <button type="submit" class="btn btn-primary" style="float: right;">Submit1</button>
@@ -62,23 +68,26 @@
 </div>
 	<script type="text/javascript">
 		var files = $("#files").html();
-		var number = $("#fore input:last").attr('title');
+		var number=${fn:length(dto.files)};
 		console.log(number);
 		
-		var number2=${fn:length(dto.files)}
-		console.log(number2)
+		$("#contents").summernote();
+	
+		$("#contents").summernote('code', '${dto.contents}');
 		
 		$("#files").empty();
 	
 		$(".del").click(function() {
 			var fnum = $(this).attr('id')
-			alert($(this).attr('title'))
+			
+				
 			$.post("./fileDelete",{fnum:fnum}, function(data) {
 				if(data>0){
 					$("#f"+fnum).remove();	
 					number--;
 				}
 			});
+			
 		});
 		
 		$("#add_file").click(function() {

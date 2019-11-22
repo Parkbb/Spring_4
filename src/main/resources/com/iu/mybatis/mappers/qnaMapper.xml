@@ -59,13 +59,13 @@
 		<result property="ref" column="ref"/>
 		<result property="step" column="step"/>
 		<result property="depth" column="depth"/>
-		<collection property="files" javaType="java.util.List" ofType="QFilesVO" resultMap="filesResult">
+		<collection property="files" javaType="java.util.List" ofType="FilesVO" resultMap="filesResult">
 			
 		</collection>
 		
 	</resultMap>
-	<resultMap type="QFilesVO" id="filesResult">
-		<id property="qnum" column="qnum"/>
+	<resultMap type="FilesVO" id="filesResult">
+		<id property="fnum" column="fnum"/>
 		<result property="fname" column="fname"/>
 		<result property="oname" column="oname"/>
 	</resultMap>

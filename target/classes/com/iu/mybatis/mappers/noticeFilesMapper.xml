@@ -4,20 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="noticeFilesMapper">
-  	<insert id="fileWrite" parameterType="NFilesVO">
+  	<insert id="fileWrite" parameterType="FilesVO">
   		insert into noticefiles values(file_seq.nextval, #{num}, #{fname}, #{oname})
   	</insert>
   	
-  	<select id="fileList" parameterType="Integer" resultType="NFilesVO">
+  	<select id="fileList" parameterType="Integer" resultType="FilesVO">
   		select * from noticefiles where num = #{num}
   	</select>
   	
-  	<delete id="fileDelete" parameterType="NFilesVO">
+  	<delete id="fileDelete" parameterType="FilesVO">
   		delete noticefiles where fnum = #{fnum}
   	</delete>
   	
   	<!-- 파일 조회 -->
-	<select id="fileSelect" resultType="NFilesVO" parameterType="NFilesVO">
+	<select id="fileSelect" resultType="FilesVO" parameterType="FilesVO">
 		select * from noticefiles where fnum=#{fnum}
 	</select>
   </mapper>

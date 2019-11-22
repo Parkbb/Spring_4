@@ -1,6 +1,6 @@
 package com.iu.s4.model;
 
-public class NoticeFilesVO {
+public class FilesVO {
 
 	private int fnum;
 	private int num;

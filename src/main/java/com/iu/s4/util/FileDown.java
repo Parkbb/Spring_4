@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.iu.s4.model.NoticeFilesVO;
+import com.iu.s4.model.FilesVO;
+import com.iu.s4.model.QnaFilesVO;
 
 @Component
 public class FileDown extends AbstractView{
@@ -24,7 +25,8 @@ public class FileDown extends AbstractView{
 		// TODO Auto-generated method stub
 		System.out.println("FileDown Class");
 		
-		NoticeFilesVO noticeFilesVO =  (NoticeFilesVO)model.get("file");
+		
+		FilesVO noticeFilesVO =  (FilesVO)model.get("file");
 		String board = model.get("board").toString();
 		String realpath = request.getSession().getServletContext().getRealPath("resources/upload/"+board);
 		System.out.println(realpath);

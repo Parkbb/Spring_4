@@ -13,7 +13,7 @@ import com.iu.s4.dao.BoardNoticeDAO;
 import com.iu.s4.dao.NoticeFilesDAO;
 import com.iu.s4.model.BoardNoticeVO;
 import com.iu.s4.model.BoardVO;
-import com.iu.s4.model.NoticeFilesVO;
+import com.iu.s4.model.FilesVO;
 import com.iu.s4.util.FileSaver;
 import com.iu.s4.util.Pager;
 
@@ -27,7 +27,7 @@ public class BoardNoticeService implements BoardService {
 	@Inject
 	private NoticeFilesDAO noticeFilesDAO;
 	
-	public NoticeFilesVO fileSelect(NoticeFilesVO noticeFilesVO) throws Exception{
+	public FilesVO fileSelect(FilesVO noticeFilesVO) throws Exception{
 		return noticeFilesDAO.fileSelect(noticeFilesVO);
 	}
 	
@@ -41,7 +41,7 @@ public class BoardNoticeService implements BoardService {
 		return boardNoticeDAO.boardList(pager);
 	}
 	
-	public int fileDelete(NoticeFilesVO noticeFilesVO) throws Exception{
+	public int fileDelete(FilesVO noticeFilesVO) throws Exception{
 		
 		return noticeFilesDAO.fileDelete(noticeFilesVO);
 	}
@@ -74,7 +74,7 @@ public class BoardNoticeService implements BoardService {
 			for (int i = 0; i < boardVO.getFile().length; i++) {
 				if(boardVO.getFile()[i].getSize()>0) {
 					
-					NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+					FilesVO noticeFilesVO = new FilesVO();
 					String filename = fs.save2(realpath, boardVO.getFile()[i]);
 			
 					noticeFilesVO.setNum(boardVO.getNum());
@@ -100,7 +100,7 @@ public class BoardNoticeService implements BoardService {
 			for (MultipartFile file : boardVO.getFile()) {
 				if (file.getSize() >0) {
 					
-				NoticeFilesVO noticeFilesVO = new NoticeFilesVO();
+				FilesVO noticeFilesVO = new FilesVO();
 				String filename = fs.save2(realpath, file);
 				
 				noticeFilesVO.setNum(boardVO.getNum());

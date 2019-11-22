@@ -18,7 +18,7 @@
 </head>
 <body>
 <c:import url="../layout/nav.jsp" />
-
+<c:import url="../layout/summernote.jsp" />
 <div class="container">
 <h2>Reply Insert Page</h2>
 <form  method="post" id="frm" action="qnaReply">
@@ -37,7 +37,7 @@
     
     <div class="form-group">
     	  <label for="eng">CONTENTS:</label>
-    	  <textarea rows="30" cols="50" class="form-control" placeholder="Enter Contents" name="contents"></textarea>
+    	  <textarea id="contents" class="form-control" placeholder="Enter Contents" name="contents"></textarea>
       	
     </div>
     
@@ -47,6 +47,8 @@
 </form>
 </div>
     <script type="text/javascript">
+    $("#contents").summernote();
+    
     $("#submit").click(function() {
 		if($("#title").val() ==""){
 			alert('내용을 입력하세요');

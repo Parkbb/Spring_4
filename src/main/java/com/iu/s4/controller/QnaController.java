@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s4.model.BoardVO;
+import com.iu.s4.model.FilesVO;
+import com.iu.s4.model.QnaFilesVO;
 import com.iu.s4.service.BoardQnaService;
 import com.iu.s4.util.Pager;
 
@@ -21,6 +24,18 @@ public class QnaController {
 
 	@Inject
 	private BoardQnaService boardQnaService;
+	
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(QnaFilesVO qnaFilesVO) throws Exception{
+		 
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("file", qnaFilesVO);
+		mv.setViewName("fileDown");
+		mv.addObject("board", "qna");
+		return mv;
+		
+	}
 	
 	@RequestMapping("qnaReply")
 	public ModelAndView boardReply(BoardVO boardVO) throws Exception{
@@ -108,7 +123,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("dto", boardQnaService.boardSelect(boardVO));
-		
+		mv.addObject("board", "qna");
 		
 		mv.setViewName("board/boardUpdate");
 		return mv;

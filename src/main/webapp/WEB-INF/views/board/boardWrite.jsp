@@ -18,9 +18,10 @@
 </head>
 <body>
 <c:import url="../layout/nav.jsp" />
+<c:import url="../layout/summernote.jsp" />
 
 <div class="container">
-<h2>${board} Insert Page111</h2>
+<h2>${board} Insert Page</h2>
 <form class="form-horizontal" action="${board}Write" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">TITLE</label>
@@ -55,6 +56,7 @@
 			<input type="button" class="btn btn-primary" value="ADD FILE" id="add_file">
 		<!--**********************버튼그룹 -->
 		<button type="submit" class="btn btn-info" id="btn_right">작성</button>
+		
 		</form>
 
 	
@@ -74,6 +76,11 @@
 			}
 		
 	});
+	
+	$("#contents").summernote({
+        placeholder: 'Hello bootstrap 3',
+        height: 500
+      });
 	
 	$("#files").on('click' ,".del_file" ,function() {
 			//$(this).parents(".form-group").remove();

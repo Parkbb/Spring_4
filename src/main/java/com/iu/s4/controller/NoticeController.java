@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s4.model.BoardVO;
-import com.iu.s4.model.NoticeFilesVO;
+import com.iu.s4.model.FilesVO;
 import com.iu.s4.service.BoardNoticeService;
 import com.iu.s4.util.Pager;
 
@@ -26,7 +26,7 @@ public class NoticeController {
 	private BoardNoticeService boardNoticeService;
 	
 	@GetMapping("fileDown")
-	public ModelAndView fileDown(NoticeFilesVO noticeFilesVO) throws Exception{
+	public ModelAndView fileDown(FilesVO noticeFilesVO) throws Exception{
 		noticeFilesVO=boardNoticeService.fileSelect(noticeFilesVO);
 		System.out.println("d");
 		ModelAndView mv = new ModelAndView();
@@ -38,7 +38,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("fileDelete")
-	public ModelAndView fileDelete(NoticeFilesVO noticeFilesVO) throws Exception{
+	public ModelAndView fileDelete(FilesVO noticeFilesVO) throws Exception{
 		System.out.println(noticeFilesVO.getFnum());
 		int result = boardNoticeService.fileDelete(noticeFilesVO);
 		
@@ -99,7 +99,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		
 		boardVO = boardNoticeService.boardSelect(boardVO);
-		boardVO.getContents().replace("/r/n", "<br>");
+		boardVO.setContents(boardVO.getContents().replace("\r\n", "<br>"));
 		mv.addObject("dto", boardVO);
 		mv.addObject("board", "notice");
 		mv.setViewName("board/boardSelect");
@@ -113,7 +113,7 @@ public class NoticeController {
 		
 		
 		mv.addObject("dto", boardNoticeService.boardSelect(boardVO));
-		
+		mv.addObject("board", "notice");
 		mv.setViewName("board/boardUpdate");
 		return mv;
 	}
