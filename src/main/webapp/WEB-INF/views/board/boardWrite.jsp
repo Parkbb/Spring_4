@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">CONTENTS</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="contents" name="contents"></textarea>
+					<div class="form-control" id="contents"></div>
 				</div>
 			</div>
 		<div id = "files">
@@ -78,8 +78,15 @@
 	});
 	
 	$("#contents").summernote({
-        placeholder: 'Hello bootstrap 3',
-        height: 500
+        height: 500,
+        callbacks:{
+        	onImageUpload:function(files, editor){
+        		uploadFile(files[0], this);
+        	},
+        	onMediaDelete:function(files, editor){
+        		deleteFile(files[0], this);
+        	}
+        }
       });
 	
 	$("#files").on('click' ,".del_file" ,function() {
@@ -87,6 +94,37 @@
 			$(this).closest(".form-group").remove();
 			number--;
 	});
+	
+	function uploadFile(file, editor) {
+		var formData = new FormData();
+		formData.append('file', file);
+		$.ajax({
+			data:formData,
+			type:'POST',
+			url:"./summerFile",
+			enctype:"multipart/form-data",
+			contentType:false,
+			cache:false,
+			processData:false,
+			success:function(data){
+				data = data.trim();
+				data = '../resources/upload/summerFile/'+data;
+				$(editor).summernote('insertImage', data)
+			}
+		});
+	}
+	
+	function deleteFile(file, editor) {
+		$.ajax({
+			type:'POST',
+			url:"./summerDelete",
+			data:{
+				file:
+			}
+			
+			
+		});
+	}
 	
 	</script>
 </body>

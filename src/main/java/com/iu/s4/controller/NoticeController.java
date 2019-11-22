@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s4.model.BoardVO;
@@ -25,6 +26,19 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
+	
+	@PostMapping(value = "summerFile")
+	public ModelAndView summerFile(MultipartFile file,HttpSession session) throws Exception{
+		
+		String filename = boardNoticeService.summerFile(file, session);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("result", filename);
+		mv.setViewName("common/common_ajaxResult");
+		
+		return mv;
+	}
 	@GetMapping("fileDown")
 	public ModelAndView fileDown(FilesVO noticeFilesVO) throws Exception{
 		noticeFilesVO=boardNoticeService.fileSelect(noticeFilesVO);

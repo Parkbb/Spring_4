@@ -26,7 +26,7 @@
 	setInterval(function() {
 		
 		$.get("./time",function(data){
-			$("p").html(data);
+			$("#p").html(data);
 		});
 	
 	}, 1000);
