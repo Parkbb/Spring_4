@@ -15,6 +15,17 @@ import com.iu.s4.model.MemberVO;
 @Component
 public class FileSaver {
 	
+	
+	//file Delete
+	public boolean fileDelete(String realpath, String filename) throws Exception{
+		File file = new File(realpath, filename);
+		boolean check=false;
+		if(file.exists()) {
+			check = file.delete();
+		}
+		return check;
+	}
+	
 	//1.Spring에서 제공하는 FileCopyUtils 클래스의 copy메서드 사용
 	
 	public String save(String realpath,MultipartFile multipartFile) throws Exception {

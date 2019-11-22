@@ -115,13 +115,18 @@
 	}
 	
 	function deleteFile(file, editor) {
+		var filename = $(file).attr("src");
+		filename=filename.substring(filename.lastIndexOf("/")+1);
+		console.log(filename);
 		$.ajax({
 			type:'POST',
 			url:"./summerDelete",
 			data:{
-				file:
+				file:filename
+			},
+			success:function(data){
+				console.log(data)
 			}
-			
 			
 		});
 	}
