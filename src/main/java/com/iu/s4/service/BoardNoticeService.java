@@ -1,5 +1,6 @@
 package com.iu.s4.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -93,7 +94,12 @@ public class BoardNoticeService implements BoardService {
 					noticeFilesVO.setFname(filename);
 					noticeFilesVO.setOname(boardVO.getFile()[i].getOriginalFilename());
 			
-					noticeFilesDAO.noticefilesWrite(noticeFilesVO);
+					int result2 = noticeFilesDAO.noticefilesWrite(noticeFilesVO);
+					
+					if(result2 <1) {
+						throw new SQLException();
+					}
+					
 				}
 			}
 		}
