@@ -16,5 +16,6 @@ public class Work {
 		
 		transfer.getSubway("KaKao");
 		
+		transfer.taxi();
 	}
 }
