@@ -22,14 +22,23 @@ public class UpdateInterCeptor extends HandlerInterceptorAdapter{
 		
 		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
 		Map<String, Object> map = modelAndView.getModel();
+		
+		String board = "";
+				
+		if(map.get("board")!=null) {
+			board = map.get("board").toString();
+		}
+		
+		if(board.equals("qna")) {
+			
 		BoardQnaVO boardQnaVO =(BoardQnaVO)map.get("dto");
-		String board = map.get("board").toString();
 		if(!memberVO.getId().equals(boardQnaVO.getWriter())) {
 			
 			modelAndView.addObject("msg", "권한이 없음");
 			modelAndView.addObject("path", board+"List");
 			modelAndView.setViewName("common/common_result");
 			
+		}
 		}
 		super.postHandle(request, response, handler, modelAndView);
 	}
