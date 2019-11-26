@@ -20,6 +20,13 @@
   <p>5초 후 메인페이지로 이동합니다</p>
   <p>여기를 누르시면 바로 이동가능합니다</p>
 </div>
+<script type="text/javascript">
+setInterval(function() {
+	
+	location.href="/s4/";
 
+}, 5000);
+
+</script>
 </body>
 </html>

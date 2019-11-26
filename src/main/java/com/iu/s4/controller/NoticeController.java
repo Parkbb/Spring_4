@@ -184,7 +184,7 @@ public class NoticeController  extends HandlerInterceptorAdapter{
 		mv.setViewName("common/common_result");
 		return mv;
 	}
-	
+	/*
 	@ExceptionHandler(NullPointerException.class)
 	public ModelAndView getNull() {
 		ModelAndView mv = new ModelAndView();
@@ -200,4 +200,5 @@ public class NoticeController  extends HandlerInterceptorAdapter{
 		
 		return mv;
 	}
+	*/
 }
