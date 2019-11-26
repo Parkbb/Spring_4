@@ -30,6 +30,11 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/common/common_400_error.jsp</location>
+	</error-page>
+	
 	<filter>
 		<filter-name>encode</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

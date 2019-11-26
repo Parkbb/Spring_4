@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">CONTENTS</label>
 				<div class="col-sm-10">
-					<div class="form-control" id="contents"></div>
+					<textarea class="form-control" id="contents" name = "contents"></textarea>
 				</div>
 			</div>
 		<div id = "files">
@@ -55,7 +55,9 @@
 		
 			<input type="button" class="btn btn-primary" value="ADD FILE" id="add_file">
 		<!--**********************버튼그룹 -->
+		
 		<button type="submit" class="btn btn-info" id="btn_right">작성</button>
+		
 		
 		</form>
 

@@ -24,7 +24,21 @@
 	
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0"></beans:property>
-	</beans:bean>
+	</beans:bean >
+	
+
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<exclude-mapping path="/qna/qnaList"/>
+			<beans:bean class="com.iu.s4.interceptors.Logininterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**/*Update"/>
+			<beans:ref bean="updateInterCeptor"/>
+		</interceptor>
+	</interceptors>
 	
 	<context:component-scan base-package="com.iu.s4" />
 	

@@ -70,7 +70,7 @@
 			</ul>
 		</div>
 		<!-- session member, memberDTO -->
-		<c:if test="${empty sessionScope.member}">
+		<c:if test="${not empty member}">
 			<a href="${board}Write" class="btn btn-primary"
 				style="float: right;">INSERT</a>
 		</c:if>

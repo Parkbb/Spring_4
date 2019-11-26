@@ -7,12 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.iu.s4.model.BoardVO;
 import com.iu.s4.model.FilesVO;
@@ -21,7 +23,7 @@ import com.iu.s4.util.Pager;
 
 @Controller
 @RequestMapping("/notice/**")
-public class NoticeController {
+public class NoticeController  extends HandlerInterceptorAdapter{
 
 	@Inject
 	private BoardNoticeService boardNoticeService;
@@ -109,7 +111,7 @@ public class NoticeController {
 		if(result > 0) {
 			mv.setViewName("redirect:noticeList");
 		}else {
-			mv.addObject("msg", "글쓰기 실패");
+			mv.addObject("msg", "湲��벐湲� �떎�뙣");
 			mv.addObject("path", "noticeList");
 			mv.setViewName("common/common_result");
 		}
@@ -154,7 +156,7 @@ public class NoticeController {
 		if(result > 0) {
 			mv.setViewName("redirect:noticeList");
 		}else {
-			mv.addObject("msg", "수정 실패");
+			mv.addObject("msg", "�닔�젙 �떎�뙣");
 			mv.addObject("path", "noticeList");
 			mv.setViewName("common/common_result");
 		}
@@ -171,15 +173,31 @@ public class NoticeController {
 		
 		int result = boardNoticeService.boardDelete(boardVO);
 		if(result>0) {
-			mv.addObject("msg", "삭제 성공");
+			mv.addObject("msg", "�궘�젣 �꽦怨�");
 		
 		}else {
-			mv.addObject("msg", "삭제 실패");
+			mv.addObject("msg", "�궘�젣 �떎�뙣");
 		}
 		
 		mv.addObject("path", "noticeList");
 		mv.addObject("board", "notice");
 		mv.setViewName("common/common_result");
+		return mv;
+	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public ModelAndView getNull() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/common_500_error");
+		
+		return mv;
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView getAllException() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/common_500_error");
+		
 		return mv;
 	}
 }
