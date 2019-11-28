@@ -30,7 +30,7 @@ public class BoardNoticeService implements BoardService {
 	private FileSaver fs;
 	@Inject
 	private NoticeFilesDAO noticeFilesDAO;
-	@Value("${notice}")
+	@Value("#{db['notice']}")
 	private String board;
 	
 	

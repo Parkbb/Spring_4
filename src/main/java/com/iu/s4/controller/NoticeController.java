@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,8 +28,13 @@ public class NoticeController {
 	@Inject
 	private BoardNoticeService boardNoticeService;
 	
-	@Value("${notice}")
+	@Value("#{db['notice']}")
 	private String board;
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return board;
+	}
 	
 	@PostMapping("summerDelete")
 	public ModelAndView summerDelete(String file, HttpSession session) throws Exception{
@@ -62,7 +68,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("file", noticeFilesVO);
 		mv.setViewName("fileDown");
-		mv.addObject("board", "notice");
+		
 		return mv;
 		
 	}
@@ -87,7 +93,6 @@ public class NoticeController {
 		List<BoardVO> ar =boardNoticeService.boardList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.addObject("board", board);
 		mv.setViewName("board/boardList");
 		
 		return mv;
@@ -97,7 +102,7 @@ public class NoticeController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("board", "notice");
+		
 		mv.setViewName("board/boardWrite");
 		return mv;
 	}
@@ -118,7 +123,7 @@ public class NoticeController {
 		}
 		
 
-		mv.addObject("board", "notice");
+	
 		
 		return mv;
 		
@@ -130,8 +135,8 @@ public class NoticeController {
 		
 		boardVO = boardNoticeService.boardSelect(boardVO);
 		boardVO.setContents(boardVO.getContents().replace("\r\n", "<br>"));
-		mv.addObject("dto", boardVO);
-		mv.addObject("board", "notice");
+		//mv.addObject("dto", boardVO);
+		
 		mv.setViewName("board/boardSelect");
 		
 		return mv;
@@ -143,7 +148,7 @@ public class NoticeController {
 		
 		
 		mv.addObject("dto", boardNoticeService.boardSelect(boardVO));
-		mv.addObject("board", "notice");
+		
 		mv.setViewName("board/boardUpdate");
 		return mv;
 	}
@@ -163,7 +168,7 @@ public class NoticeController {
 		}
 		
 
-		mv.addObject("board", "notice");
+		
 		
 		return mv;
 	}
@@ -181,7 +186,7 @@ public class NoticeController {
 		}
 		
 		mv.addObject("path", "noticeList");
-		mv.addObject("board", "notice");
+		
 		mv.setViewName("common/common_result");
 		return mv;
 	}
