@@ -24,3 +24,5 @@ hs_err_pid*
 target/m2e-wtp/web-resources/META-INF/maven/com.iu/s4/pom.properties
 src/main/resources/properties/Datasource.properties
 target/classes/properties/Datasource.properties
+target/classes/properties/Common.properties
+src/main/resources/properties/Common.properties
